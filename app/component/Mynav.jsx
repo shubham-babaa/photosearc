@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import {HiMenu } from 'react-icons/hi';
-
+import { GiAbstract041 } from "react-icons/gi";
 const Mynav = () => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -10,19 +10,20 @@ const Mynav = () => {
   };
 
   return (
-    <nav className="bg-black text-white rounded-sm shadow-sm">
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-        <div className="flex items-center">
-          <a href="/" className="text-white text-xl font-bold">
-            Your Logo
-          </a>
+    <nav className="bg-stone-700 text-white rounded-sm shadow-sm">
+      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+        <div className="grid ">
+          
+         
+          <GiAbstract041 className='text-[40px]  text-cyan-600'/>
+        
         </div>
         <div className="hidden md:block">
           <ul className="flex space-x-4">
             <li>
               <a
                 href="/"
-                className="hover:text-gray-300 text-red-900 transition duration-300"
+                className="hover:text-gray-300 text-xl font-bold text-cyan-600 transition duration-300"
               >
                 Photos
               </a>
@@ -30,7 +31,7 @@ const Mynav = () => {
             <li>
               <a
                 href="/vedio"
-                className="hover:text-gray-300 text-red-900 transition duration-300"
+                className="hover:text-gray-300 text-xl font-bold text-cyan-600 transition duration-300"
               >
                 Videos
               </a>
@@ -38,7 +39,7 @@ const Mynav = () => {
             <li>
               <a
                 href="/collections"
-                className="hover:text-gray-300 text-red-900 transition duration-300"
+                 className="hover:text-gray-300 text-xl font-bold text-cyan-600 transition duration-300"
               >
                 Collections
               </a>
@@ -46,7 +47,7 @@ const Mynav = () => {
             <li>
               <a
                 href="/about"
-                className="hover:text-gray-300 text-red-900 transition duration-300"
+                 className="hover:text-gray-300 text-xl font-bold text-cyan-600 transition duration-300"
               >
                 About
               </a>
