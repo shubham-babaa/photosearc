@@ -1,15 +1,73 @@
-import { Image } from 'next/image';
-import Link from 'next/link';
+"use client"
+import React,{useState,useEffect} from "react";
+import Image from "next/image";
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
+const Page = () => {
+  const searchParams=useSearchParams();
+  const str=searchParams.get("person");
+  // const router = useRouter();
+  // const { key } = router.query; 
 
-export default function Page() {
-  const slug = "jk";
+  const query = encodeURIComponent(str);
+  ;
+  const cleanedStr = str.replace(/^"(.*)"$/, '$1');
+const num = parseInt(cleanedStr);
 
+  console.log(str,num,typeof(num))
+  const url = `https://pexelsdimasv1.p.rapidapi.com/v1/photos/${num}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: 'poU40iwlkOeU35WKQoW0B8mh0UC3spOlg9A3HlNNjSdytqAqUm0E71UI',
+      'X-RapidAPI-Key': 'cfcefc2f83msh70c1c755318138bp19af43jsn24a5d2eaceaf',
+      'X-RapidAPI-Host': 'PexelsdimasV1.p.rapidapi.com'
+    }
+  };
+
+  const [photo, setPhoto] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, options);
+        const result = await response.text();
+        const parsedResult = JSON.parse(result);
+        setPhoto(parsedResult);
+        console.log(parsedResult)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+       
+
+  if (!photo) {
+    return <div>Loading...</div>;
+  }
+   
   return (
-    <div>
-      <h1>Contact Page</h1>
-      <Link href={`/posts/${slug}`}>
-        <button>Go to Hello World Post</button>
-      </Link>
+    <div className="max-w-md min-h-screen  bg-white shadow-lg rounded-lg overflow-hidden my-5 overflow-x-hidden bg-gradient-to-r to-cyan-900 from-gray-900 mx-1">
+      <Image src={photo.src.original} alt="Green Grass Near Trees" width={700} height={400} className="w-full" />
+      <div className="p-4">
+        <h2 className="text-xl font-bold mb-2">Photographer: <a href="https://www.pexels.com/@luisdalvan" className="text-blue-500">{photo.photographer}</a></h2>
+        <div className="mt-4">
+          <h3 className="text-lg font-bold mb-2">Image Variations:</h3>
+          <ul className="list-disc list-inside">
+            <li><a href={photo.src.original} className="text-blue-500">Original</a></li>
+            <li><a href={photo.src.large2x} className="text-blue-500">Large 2x</a></li>
+            <li><a href={photo.src.large} className="text-blue-500">Large</a></li>
+            <li><a href={photo.src.medium} className="text-blue-500">Medium</a></li>
+            <li><a href={photo.src.small} className="text-blue-500">Small</a></li>
+            <li><a href={photo.src.portrait} className="text-blue-500">Portrait</a></li>
+            <li><a href={photo.src.landscape} className="text-blue-500">Landscape</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Page;

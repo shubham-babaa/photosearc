@@ -10,12 +10,12 @@ const Page = () => {
   const teamSize = 100;
 
   return (
-    <div className={`p-4 min-h-screen bg-gray-200 ${inter.className}`}>
-      <h1 className="text-2xl text-center font-bold ml-10 mb-4 mx-10 bg-gray-300 shadow-lg rounded-md text-blue-900">
+    <div className={`p-10  ${inter.className} flex min-h-screen flex-col items-center justify-between  bg-gradient-to-r to-cyan-900 from-gray-900  py-10 mx-1 overflow-x-hidden`}>
+      <h1 className="text-2xl w-full py-2 text-center font-bold ml-10 mb-2 mx-10 bg-gray-900 shadow-lg shadow-cyan-500 rounded-md text-white">
         About Page
       </h1>
 
-      <div className="text-center lg:h-[300px] bg-gray-700 mx-10 shadow-lg rounded-md leading-7 p-5">
+      <div className="text-center lg:h-[300px] bg-gray-900 shadow-lg shadow-cyan-500 mx-10 shadow-lg rounded-md leading-7 p-3">
         <h1 className="text-green-100 text-3xl mb-5">Welcome to the About page of our website!</h1>
 
         <p className="text-white">{description}</p>

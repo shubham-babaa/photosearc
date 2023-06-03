@@ -37,8 +37,8 @@ export default  function Wikihowlod  ()  {
   
 
   return (
-    <div className="container mx-auto p-4">
-    <h1 className="text-2xl font-bold mb-4">Search Page</h1>
+    <div className="container   py-40">
+    <h1 className="text-2xl font-bold text-cyan-100 text-transparent opacity-90 mb-4">Image</h1>
     {a ? (
       <WikihowImages photoURLs={searchResults} />
     ) : (

@@ -29,7 +29,10 @@ export default function WikihowImages({ searchResults, handleDownload, handleDet
 
   const determineDynamicURL = (url) => {
     const key = findKeyByURL(url);
-    return `/posts/${key}`;
+    const query=`?person=${encodeURIComponent(
+      JSON.stringify(key)
+    )}`;
+    return `/posts/${query}`;
   };
    const handelparentclick=(event)=>{
     event.stopPropagation();
@@ -37,29 +40,29 @@ export default function WikihowImages({ searchResults, handleDownload, handleDet
   const dynamicURL = determineDynamicURL(selectedImage);
   //  useEffect(()=>{ console.log(showImage)},[showImage])
   return (
-    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 min-h-screen  " onClick={handelparentclick}>
+    <div className="mt-10 items-center  grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 px-1 min-h-screen w-[100%] overflow-x-hidden   mx-1" onClick={handelparentclick}>
       {Object.keys(photoURLs).map((key) => (
-        <div key={key} className="relative rounded-lg border-2 bg-white border-red-900 pb-5">
+        <div key={key} className="relative rounded-lg border-2 bg-gradient-to-r to-cyan-900 from-gray-900  ">
           <Image
             src={photoURLs[key]}
             alt="Image"
             width={2000}
             height={700}
-            className="w-[700px] h-[300px] rounded-lg border-4 border-white"
+            className="w-full h-[100px] sm:h-[240px] md:h-[300px] rounded-lg "
             
           />
-          <IoArrowUpCircle className='text-3xl relative top-[-50%] left-[40%] text-emerald-500 animate-bounce rounded-full bg-sky-400 opacity-75'  onClick={() => handleShowImage(photoURLs[key])}/>
-        </div>
+           <IoArrowUpCircle className='text-3xl absolute top-[-50%] left-[40%] text-emerald-900 animate-bounce rounded-full opacity-75'  onClick={() => handleShowImage(photoURLs[key])}/>
+        </div> 
       ))}
       {showImage && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 p-10">
+        <div className="fixed top-0 left-0 w-full min-h-screen flex items-center justify-center bg-black bg-opacity-75 p-5">
           <div className="relative">
             <Image
               src={selectedImage}
               alt="Image"
               width={2000}
               height={700}
-              className="w-[900px] h-[600px]"
+              className="w-[900px] h-[400px]"
             />
             <button
               onClick={handleCloseImage}
@@ -71,15 +74,15 @@ export default function WikihowImages({ searchResults, handleDownload, handleDet
               <div>
                 <button
                   onClick={() => handleDownload(selectedImage)}
-                  className="absolute top-[90%] left-[10%] transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded"
+                  className="absolute top-[80%] left-[10%]  bg-gray-800 text-white px-4 py-2 rounded-sm"
                 >
                   Download
                 </button>
               </div>
             )}
             {handleDetail && (
-              <Link href={dynamicURL} passHref className="absolute top-[90%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded">
-                  Click me!
+              <Link href={dynamicURL} passHref className=" ml-3 absolute top-[80%] left-[50%]  bg-gray-800 text-white px-4 py-2 rounded">
+                  more detail!
                 
               </Link>
             )}

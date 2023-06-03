@@ -3,7 +3,7 @@ import React from 'react'
 
 export default async function Wikihowlod() {
 
-    const url = 'https://hargrimm-wikihow-v1.p.rapidapi.com/images?count=300';
+    const url = 'https://hargrimm-wikihow-v1.p.rapidapi.com/images?count=30';
     const options = {
         method: 'GET',
         headers: {

@@ -32,7 +32,7 @@ const handleDownload = async (url) => {
 const handleDetail="true";
 
   return (
-    <div>
+    <div className='overflow-x-hidden bg-gradient-to-r to-cyan-900 from-gray-900 mx-1'>
      <WikihowImages photoURLs={result}  handleDownload={handleDownload} handleDetail={handleDetail}/>
     </div>
   );

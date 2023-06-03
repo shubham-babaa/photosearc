@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import WikihowImages from './WikihowImages';
 import VedioFetch from './VedioFetch';
-import {IoArrowForwardOutline } from "react-icons/io5";
+import { IoArrowForwardOutline } from 'react-icons/io5';
+
 const trendingTopics = [
   'technology',
   'space',
@@ -29,7 +30,7 @@ export default function PixelSearch() {
   const [photoURLs, setPhotoURLs] = useState({});
   const [urldetail, setUrldetail] = useState({});
   const [topic, setTopic] = useState('');
-  const [selectedOption, setSelectedOption] = useState('all');
+  const [selectedOption, setSelectedOption] = useState('none');
 
   const handleSearch = async () => {
     const data = await Pixelfetch(searchQuery ? searchQuery : selectedOption);
@@ -46,7 +47,9 @@ export default function PixelSearch() {
     });
 
     setPhotoURLs(urls);
-    const queryString = `?person=${encodeURIComponent(JSON.stringify(urls))}`;
+    const queryString = `?person=${encodeURIComponent(
+      JSON.stringify(urls)
+    )}`;
     const url = `/search${queryString}`;
     window.location.href = url;
   };
@@ -69,9 +72,11 @@ export default function PixelSearch() {
       }
     });
     setPhotoURLs(videoFilesArray);
-    const queryString = `?person=${encodeURIComponent(JSON.stringify(videoFilesArray))}`;
+    const queryString = `?person=${encodeURIComponent(
+      JSON.stringify(videoFilesArray)
+    )}`;
     const url = `/vedio${queryString}`;
-    window.location.href = "/vedio";
+    window.location.href = '/vedio';
   };
 
   useEffect(() => {
@@ -79,11 +84,13 @@ export default function PixelSearch() {
   }, [photoURLs, searchResults, searchQuery]);
 
   return (
-    <div className="bg-gray-600 py-4 px-6 contrast-100 sm:px-12 md:px-24 lg:px-32 xl:px-40 border-white border-2 rounded-lg">
+    <div className=" bg-gray-900 mg-5 py-4 px-6 contrast-100 sm:px-12 md:px-24 lg:px-32 xl:px-40 border-white border-2 rounded-lg z-0  overflow-x-hidden">
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Search Filter</span>
+        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+          Search Filter
+        </span>
       </h1>
-      <div className={`flex flex-col md:flex-row items-center  mb-6`}>
+      <div className="flex flex-col md:flex-row items-center mb-6">
         <input
           type="text"
           value={searchQuery}
@@ -103,24 +110,22 @@ export default function PixelSearch() {
             </option>
           ))}
         </select>
-        </div>
-        <div className='flex  justify-between'>
+      </div>
+      <div className="flex  sm:flex-row items-center justify-between">
         <button
           onClick={handleSearch}
-          className="bg-cyan-500  shadow-lg shadow-cyan-500/50 text-white py-2 px-6 ml-2 rounded-lg"
+          className="bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white py-1 px-2 mb-2 rounded-md sm:mb-0 sm:mr-2"
         >
           Search
         </button>
         <button
           onClick={handleSearchVedio}
-          className="bg-cyan-500  shadow-lg shadow-cyan-500/50 text-white  px-6 ml-2 rounded-lg  flex py-2 justify-between"
+          className="bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white py-1 px-2 mb-2 rounded-lg sm:mb-0 sm:ml-2 flex items-center"
         >
-         <IoArrowForwardOutline className=' text-2xl'/> 
-         <h1>
-         Video</h1>
+          <IoArrowForwardOutline className="text-2xl" />
+          <span className="ml-2">Video</span>
         </button>
-        </div>
       </div>
-
+    </div>
   );
 }
