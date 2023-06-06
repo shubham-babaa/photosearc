@@ -30,7 +30,28 @@ export default function PixelSearch() {
   const [photoURLs, setPhotoURLs] = useState({});
   const [urldetail, setUrldetail] = useState({});
   const [topic, setTopic] = useState('');
-  const [selectedOption, setSelectedOption] = useState('none');
+  const [selectedOption, setSelectedOption] = useState('all');
+
+  const handleFetchData = async () => {
+    try {
+      const [pixelfetchResult, wikihowlodResult, vediofetchResult] = await Promise.all([
+        Pixelfetch('ocean'), // Pass your search query here
+        Wikihowlod(),
+        Vediofetch('ocean'), // Pass your search query here
+      ]);
+
+      // Access the results of each API call here
+      console.log('Pixelfetch result:', pixelfetchResult);
+      console.log('Wikihowlod result:', wikihowlodResult);
+      console.log('Vediofetch result:', vediofetchResult);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleFetchData();
+  }, []);
 
   const handleSearch = async () => {
     const data = await Pixelfetch(searchQuery ? searchQuery : selectedOption);
@@ -96,7 +117,7 @@ export default function PixelSearch() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search"
-          className="rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent flex-grow mb-2 md:mb-0 md:mr-2"
+          className="text-gray-900 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent flex-grow mb-2 md:mb-0 md:mr-2"
         />
         <select
           value={selectedOption}

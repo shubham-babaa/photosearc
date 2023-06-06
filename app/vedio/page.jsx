@@ -65,7 +65,7 @@ export default function Page() {
             controls
             autoplay
             loop
-            className="w-full h-[600px] "
+            className="w-full h-[300px] sm:h-[600px] "
           >
             <source src=
               "https://player.vimeo.com/external/221214111.hd.mp4?s=02857e21d87a8cd1c0ceeb77ba164d2648b49871&profile_id=170&oauth2_token_id=57447761"
@@ -73,12 +73,12 @@ export default function Page() {
           </video>
         </div >
 
-        <div className='absolute sm:top-[80%] sm:left-[35%] top-[80%] flex z-50'>
+        <div className='absolute sm:top-[80%] sm:left-[35%] top-[12%] flex z-50'>
           <input
             type="text"
             value={searchData}
             onChange={(e) => { setSearchData(e.target.value) }}
-            className="border border-gray-300 rounded-md py-2 px-4 w-64 sm:w-80 md:w-96"
+            className="border text-gray-900 border-gray-300 rounded-md py-2 px-4 w-64 sm:w-80 md:w-96"
             placeholder="Search..."
           />
           <button
@@ -98,7 +98,7 @@ export default function Page() {
                 <div key={id} className="relative">
                   <div className="rounded overflow-hidden shadow-lg shadow-cyan-500/50">
                     <div
-                      className="w-full h-full bg-blackbg-cyan-500 shadow-3xl shadow-cyan-500 rounded-lg cursor-pointer relative border-4  border-red-900 px-4"
+                      className="w-full h-full bg-blackbg-cyan-500 shadow-3xl shadow-cyan-500 rounded-lg cursor-pointer relative border-4 px-4"
                     // Call handlePlayVideo when video is clicked
                     >
 

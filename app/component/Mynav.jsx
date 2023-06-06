@@ -28,7 +28,7 @@ const Mynav = () => {
             <button
               type="button"
               onClick={toggleMenu}
-              className="bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white py-1 px-2 mb-2 rounded-md sm:mb-0 sm:ml-2 flex items-center"
+              className="bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white py-1 px-2 mb-2 rounded sm:mb-0 sm:ml-2 flex items-center"
             >
               {isOpen ? <BiArrowFromLeft /> : <FiMenu />}
             </button>
